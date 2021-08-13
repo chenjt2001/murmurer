@@ -4,7 +4,7 @@ import '../common/data.dart' as data;
 
 /// 浏览日记
 class DiaryPage extends StatelessWidget {
-  Map<String, dynamic> _data;
+  final Map<String, dynamic> _data;
 
   DiaryPage(this._data);
 

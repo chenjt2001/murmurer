@@ -1,6 +1,4 @@
-library myapp.data;
-
-import 'dart:io';
+library murmurer.data;
 
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';

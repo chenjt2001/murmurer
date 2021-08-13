@@ -22,68 +22,63 @@ class _HelpPageState extends State<HelpPage> {
 
   @override
   Widget build(BuildContext context) {
+
     return FutureBuilder(
       future: _future,
       builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.done: // 执行完成
-            return new RichText(
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                    text: '介绍\n',
-                    style: Theme.of(context).primaryTextTheme.headline6,
-                  ),
-                  TextSpan(
-                    text: '《Murmurer》是一款用来记录生活的软件。\n\n',
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  TextSpan(
-                    text: '关于\n',
-                    style: Theme.of(context).primaryTextTheme.headline6,
-                  ),
-                  TextSpan(
-                    text: '作者：',
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  TextSpan(
-                    text: '珒陶（陈锦涛）\n',
-                    style: TextStyle(color: Colors.blue),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
+            return new Column(
+              children: [
+                new RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: '介绍\n',
+                        style: Theme.of(context).primaryTextTheme.headline6,
+                      ),
+                      TextSpan(
+                        text: '《Murmurer》是一款用来记录生活的软件。\n\n',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      TextSpan(
+                        text: '关于\n',
+                        style: Theme.of(context).primaryTextTheme.headline6,
+                      ),
+                      TextSpan(
+                        text: '作者：',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      TextSpan(
+                        text: '珒陶（陈锦涛）\n',
+                        style: TextStyle(color: Colors.blue),
+                        recognizer: TapGestureRecognizer()
+                        ..onTap = () {
                         launch('http://www.chenjt.com/');
-                      },
-                  ),
-                  TextSpan(
-                    text: '版本：${_packageInfo.version}\n',
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  TextSpan(
-                    text: '数据库文件路径：${data.dbFilePath}\n',
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  /*TextSpan(
-                    text: 'Copyright © 2021 珒陶. All rights reserved.\n',
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  TextSpan(
-                    text: '更多信息可访问 ',
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  TextSpan(
-                    text: '官方网站',
-                    style: TextStyle(color: Colors.blue),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        launch('http://www.chenjt.com/');
-                      },
-                  ),
-                  TextSpan(
-                    text: ' 。',
-                    style: TextStyle(color: Colors.black),
-                  ),*/
-                ],
-              ),
+                        },
+                      ),
+                      TextSpan(
+                        text: '版本：${_packageInfo.version}\n',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      TextSpan(
+                        text: '数据库文件路径：${data.dbFilePath}\n',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ],
+                  )
+                ),
+
+                Divider(),
+
+                ListTile(
+                  title: Text("Licenses"),
+                  trailing: Icon(Icons.keyboard_arrow_right),
+                  onTap: (){showLicensePage (
+                    context: context,
+                  );},
+                ),
+              ],
             );
           default: // 未执行完成等情况
             return Container();
