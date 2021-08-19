@@ -14,6 +14,7 @@ class DiaryPage extends StatelessWidget {
     return new Scaffold(
       appBar: AppBar(
         title: const Text('日记浏览'),
+        elevation: 0,
         actions: <Widget>[
           // 删除按钮
           IconButton(

@@ -35,6 +35,7 @@ class _SentencesPageState extends State<SentencesPage> {
                   // 列表的每一项
                   return ListTile(
                     title: Text(_sentences[index]["content"]),
+                    subtitle: Text(_sentences[index]["created_time"]),
                     trailing: IconButton(
                       icon: Icon(Icons.delete),
                       onPressed: () {_delete(context, _sentences[index]["id"]);},

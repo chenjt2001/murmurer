@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../dialogs/record_a_sentence.dart';
 import 'write_a_diary.dart';
+import '../common/widgets.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -15,34 +16,32 @@ class HomePage extends StatelessWidget {
           Expanded(
             child: Padding(
               padding: EdgeInsets.all(20),
-              child: ElevatedButton(
-                child: Text("记一句话"),
-                onPressed: () {
-                  recordASentence(context);
-                },
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.lightBlue,
-                  minimumSize: Size(double.infinity, double.infinity),
-                  // 使按钮尽可能大
-                  textStyle:
-                      TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                  shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(20.0), // 圆角
-                  ),
-                ),
+              child: GradientButton(
+                colors: [Color(0xFF36D1DC), Color(0xFF5B86E5)],
+                splashColor: Color(0xFF5B86E5),
+                onPressed: () { recordASentence(context); },
+                child: Text("记一句话", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
+                borderRadius: BorderRadius.circular(20.0),
               ),
             ),
           ),
           Expanded(
             child: Padding(
               padding: EdgeInsets.all(20),
-              child: ElevatedButton(
+              child: GradientButton(
+                colors: [Color(0xFFFF7E5F), Color(0xFFFFAD77)],
+                splashColor: Color(0xFFFF7E5F),
+                onPressed: () { writeADiary(context); },
+                child: Text("写一篇日记", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              /*ElevatedButton(
                 child: Text("写一篇日记"),
                 onPressed: () {
                   writeADiary(context);
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.red,
+                  primary: Color(0xFFE75A48),
                   minimumSize: Size(double.infinity, double.infinity),
                   textStyle:
                       TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
@@ -50,7 +49,7 @@ class HomePage extends StatelessWidget {
                     borderRadius: new BorderRadius.circular(20.0),
                   ),
                 ),
-              ),
+              ),*/
             ),
           ),
         ],

@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'pages/home.dart';
 import 'pages/help.dart';
 import 'pages/sentences.dart';
 import 'pages/diaries.dart';
 import 'common/data.dart' as data;
+
+/// 主题色：
+/// Color(0xFFF2F2EA) // 淡黄
+/// Color(0xFFE75A48) // 红
+/// Color(0xFF86D3BF) // 绿
+/// Color(0xFFD9E0BF) // 黄
+/// Color(0xFFBEEED8) // 浅绿
 
 class AppWidget extends StatefulWidget {
   @override
@@ -52,6 +60,8 @@ class _MurmurerState extends State<Murmurer> {
 
       appBar: AppBar(
         title: const Text('Murmurer'),
+        elevation: 0,// 取消阴影
+        centerTitle: true,
       ),
       // 侧栏
       drawer: Drawer(
@@ -138,12 +148,27 @@ class _MurmurerState extends State<Murmurer> {
   }
 }
 
-void main() {
-  runApp(new MaterialApp(
+class MyApp extends MaterialApp {
+  MyApp() : super(
     title: 'Murmurer',
     theme: new ThemeData(
       primaryColor: Colors.white,
+      backgroundColor: Colors.white,
+      scaffoldBackgroundColor: Colors.white,
+      dialogBackgroundColor: Colors.white,
     ),
     home: new AppWidget(),
-  ));
+    localizationsDelegates: [
+      GlobalMaterialLocalizations.delegate,
+      GlobalWidgetsLocalizations.delegate,
+      GlobalCupertinoLocalizations.delegate,
+    ],
+    supportedLocales: [
+      const Locale('zh', 'CN'),
+    ],
+  );
+}
+
+void main() {
+  runApp(new MyApp());
 }

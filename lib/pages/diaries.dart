@@ -35,6 +35,7 @@ class _DiariesPagePageState extends State<DiariesPage> {
                     // 列表的每一项
                     return ListTile(
                       title: Text(_diaries[index]["title"]),
+                      subtitle: Text(_diaries[index]["created_time"]),
                       trailing: Icon(Icons.keyboard_arrow_right),
                       onTap: () {
                         Navigator.of(context).push(new MaterialPageRoute(builder: (context) {

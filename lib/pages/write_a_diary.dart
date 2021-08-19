@@ -13,6 +13,7 @@ class WriteADiaryPage extends StatelessWidget {
     return new Scaffold(
       appBar: AppBar(
         title: const Text('写一篇日记'),
+        elevation: 0,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.done),

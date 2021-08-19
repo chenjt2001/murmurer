@@ -72,7 +72,7 @@ class _HelpPageState extends State<HelpPage> {
                 Divider(),
 
                 ListTile(
-                  title: Text("Licenses"),
+                  title: Text("许可"),//Text("Licenses"),
                   trailing: Icon(Icons.keyboard_arrow_right),
                   onTap: (){showLicensePage (
                     context: context,
