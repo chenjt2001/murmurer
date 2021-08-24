@@ -28,58 +28,64 @@ class _HelpPageState extends State<HelpPage> {
       builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.done: // 执行完成
-            return new Column(
-              children: [
-                new RichText(
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: '介绍\n',
-                        style: Theme.of(context).primaryTextTheme.headline6,
-                      ),
-                      TextSpan(
-                        text: '《Murmurer》是一款用来记录生活的软件。\n\n',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      TextSpan(
-                        text: '关于\n',
-                        style: Theme.of(context).primaryTextTheme.headline6,
-                      ),
-                      TextSpan(
-                        text: '作者：',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      TextSpan(
-                        text: '珒陶（陈锦涛）\n',
-                        style: TextStyle(color: Colors.blue),
-                        recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                        launch('http://www.chenjt.com/');
-                        },
-                      ),
-                      TextSpan(
-                        text: '版本：${_packageInfo.version}\n',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      TextSpan(
-                        text: '数据库文件路径：${data.dbFilePath}\n',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                    ],
-                  )
-                ),
+            return Padding(
+              padding: EdgeInsets.all(20),
+              child: Column(
+                children: [
+                  new Image(
+                    image: AssetImage("assets/images/icon.png"),
+                    height: 150,
+                  ),
+                  new RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: '介绍\n',
+                          style: Theme.of(context).primaryTextTheme.headline6,
+                        ),
+                        TextSpan(
+                          text: '《Murmurer》是一款用来记录生活的软件。\n\n',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        TextSpan(
+                          text: '关于\n',
+                          style: Theme.of(context).primaryTextTheme.headline6,
+                        ),
+                        TextSpan(
+                          text: '作者：',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        TextSpan(
+                          text: '珒陶（陈锦涛）\n',
+                          style: TextStyle(color: Colors.blue),
+                          recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                          launch('http://www.chenjt.com/');
+                          },
+                        ),
+                        TextSpan(
+                          text: '版本：${_packageInfo.version}\n',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        TextSpan(
+                          text: '数据库文件路径：${data.dbFilePath}\n',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ],
+                    )
+                  ),
 
-                Divider(),
-
-                ListTile(
-                  title: Text("许可"),//Text("Licenses"),
-                  trailing: Icon(Icons.keyboard_arrow_right),
-                  onTap: (){showLicensePage (
-                    context: context,
-                  );},
-                ),
-              ],
-            );
+                  Divider(),
+                  //AboutListTile(),
+                  ListTile(
+                    title: Text("许可"),//Text("Licenses"),
+                    trailing: Icon(Icons.keyboard_arrow_right),
+                    onTap: (){showLicensePage (
+                      context: context,
+                    );},
+                  ),
+                ],
+            ));
           default: // 未执行完成等情况
             return Container();
         }

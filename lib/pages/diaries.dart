@@ -58,7 +58,7 @@ class _DiariesPagePageState extends State<DiariesPage> {
 
   // 获取日记
   _getDiaries() {
-    return Future.delayed(Duration(seconds: 1),() async {
+    return Future.delayed(Duration(seconds: 0),() async {
       _diaries = await data.getDiaries();
     });
   }

@@ -35,21 +35,6 @@ class HomePage extends StatelessWidget {
                 child: Text("写一篇日记", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
                 borderRadius: BorderRadius.circular(20.0),
               ),
-              /*ElevatedButton(
-                child: Text("写一篇日记"),
-                onPressed: () {
-                  writeADiary(context);
-                },
-                style: ElevatedButton.styleFrom(
-                  primary: Color(0xFFE75A48),
-                  minimumSize: Size(double.infinity, double.infinity),
-                  textStyle:
-                      TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                  shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(20.0),
-                  ),
-                ),
-              ),*/
             ),
           ),
         ],

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../pages/write_a_diary.dart';
 import '../common/data.dart' as data;
+import '../common/widgets.dart';
 
 /// 浏览日记
 class DiaryPage extends StatelessWidget {
@@ -14,14 +16,13 @@ class DiaryPage extends StatelessWidget {
     return new Scaffold(
       appBar: AppBar(
         title: const Text('日记浏览'),
-        elevation: 0,
         actions: <Widget>[
           // 删除按钮
           IconButton(
             icon: Icon(Icons.delete),
             onPressed: () {
               _delete(context);
-            }),
+          }),
         ],
       ),
 
@@ -49,10 +50,41 @@ class DiaryPage extends StatelessWidget {
             SizedBox(height: 10),// 保留间距
 
             // 内容
-            Expanded(child: Text(
-              _data["content"],
-              style: TextStyle(fontSize: 18,),
-            ),),
+            Expanded(child: SingleChildScrollView(
+              child: Text(
+                _data["content"],
+                style: TextStyle(fontSize: 18,),
+              ),
+            )),
+
+            SizedBox(height: 10),// 保留间距
+
+            // 编辑按钮
+            Padding(
+              padding: EdgeInsets.fromLTRB(100, 5, 100, 0),
+              child: GradientButton(
+                colors: [Color(0xFFFF7E5F), Color(0xFFFFAD77)],
+                splashColor: Color(0xFFFF7E5F),
+                onPressed: () {
+                  Navigator.of(context).push(new MaterialPageRoute(builder: (context) {
+                    return new WriteADiaryPage(
+                      id: _data["id"],
+                      content: _data["content"],
+                      title: _data["title"],
+                    );
+                  })).then((value) => Navigator.pop(context, "refresh"));
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.edit, color: Colors.white,),
+                    SizedBox(width: 10),// 保留间距
+                    Text("编辑")
+                  ],
+                ),
+                borderRadius: BorderRadius.circular(100),
+              ),
+            )
           ],
         )
       )

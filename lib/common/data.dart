@@ -12,7 +12,7 @@ late final SharedPreferences prefs;
 const bool inProduction = const bool.fromEnvironment("dart.vm.product");// 判断是否处于生产模式
 
 /// 初始化
-Future<void> init(){
+Future<void> init() {
   return Future(() async {
     prefs = await SharedPreferences.getInstance();
 
@@ -54,31 +54,40 @@ void addASentence(String content) {
 }
 
 /// 添加一篇日记
-void addADiary(String title, String content)
-{
+void addADiary(String title, String content) {
   db.insert("diary", {"title": title, "content": content});
 }
 
-// 获取所有句子
+/// 获取所有句子
 Future<List<Map<String, dynamic>>> getSentences()
 async {
   return await db.query("sentence");
 }
 
-// 获取所有日记
+/// 获取所有日记
 Future<List<Map<String, dynamic>>> getDiaries()
 async {
   return await db.query("diary");
 }
 
 /// 删除一篇日记
-void deleteADiary(int id){
+void deleteADiary(int id) {
   db.delete("diary", where: "id = $id");
 }
 
 /// 删除一句话
-void deleteASentence(int id){
+void deleteASentence(int id) {
   db.delete("sentence", where: "id = $id");
+}
+
+/// 修改一句话
+void updateASentence(int id, String content) {
+  db.update("sentence", {"content": content}, where: "id = $id");
+}
+
+/// 修改一篇日记
+void updateADiary(int id, String title, String content) {
+  db.update("diary", {"title": title, "content": content}, where: "id = $id");
 }
 
 /// 关闭数据库

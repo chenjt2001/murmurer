@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../common/data.dart' as data;
+import '../dialogs/record_a_sentence.dart';
 
 /// 显示句子页面
 class SentencesPage extends StatefulWidget {
@@ -36,10 +37,19 @@ class _SentencesPageState extends State<SentencesPage> {
                   return ListTile(
                     title: Text(_sentences[index]["content"]),
                     subtitle: Text(_sentences[index]["created_time"]),
-                    trailing: IconButton(
-                      icon: Icon(Icons.delete),
-                      onPressed: () {_delete(context, _sentences[index]["id"]);},
-                    ),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          icon: Icon(Icons.edit),
+                          onPressed: () {_edit(context, index);},
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.delete),
+                          onPressed: () {_delete(context, index);},
+                        ),
+                      ],
+                    )
                     //selected: true,
                   );
               },);
@@ -51,15 +61,28 @@ class _SentencesPageState extends State<SentencesPage> {
     );
   }
 
-  // 获取句子
+  /// 获取句子
   _getSentences() {
-    return Future.delayed(Duration(seconds: 1),() async {
+    return Future.delayed(Duration(seconds: 0),() async {
       _sentences = await data.getSentences();
     });
   }
 
+  /// 修改句子
+  _edit(BuildContext context, int index) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return RecordASentenceDialog(id: _sentences[index]["id"], text: _sentences[index]["content"]);
+    }).then((value) {
+      setState(() {
+        _future = _getSentences();
+      }); // 刷新页面数据
+    });
+  }
+
   /// 删除一个句子
-  void _delete(BuildContext context, int id) {
+  void _delete(BuildContext context, int index) {
     showDialog(
       context: context,
       builder: (context) {
@@ -70,7 +93,7 @@ class _SentencesPageState extends State<SentencesPage> {
             TextButton(child: Text('取消'),onPressed: (){Navigator.pop(context);},),
             TextButton(child: Text('确认'),onPressed: (){
               Navigator.pop(context);
-              data.deleteASentence(id);
+              data.deleteASentence(_sentences[index]["id"]);
               setState(() {_future = _getSentences();});// 刷新页面数据
             },),
           ],
